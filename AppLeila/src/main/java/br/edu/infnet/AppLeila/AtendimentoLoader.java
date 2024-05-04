@@ -7,8 +7,11 @@ package br.edu.infnet.AppLeila;
 import br.edu.infnet.AppLeila.model.domain.Atendimento;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -22,22 +25,24 @@ public class AtendimentoLoader implements ApplicationRunner{
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        List<Atendimento> lista = new ArrayList<>();
         FileReader file = new FileReader("atendimento.txt");
         BufferedReader leitura = new BufferedReader(file);
         String linha = leitura.readLine();
         System.out.println("#Atendimento");
         while(linha != null){
             String[] campos = linha.split(";");
-            LocalTime dataHora = LocalTime.parse(campos[0], DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+            LocalDateTime dataHora = LocalDateTime.parse(campos[0], DateTimeFormatter.ISO_LOCAL_DATE_TIME);
             
             Atendimento atendimento = new Atendimento();            
             atendimento.setDataHora(dataHora);
             boolean temConvenio = campos.length>1 && !campos[1].isBlank();
             atendimento.setConvenio(temConvenio?campos[1]:null);
-            
-            System.out.println(atendimento);
+            lista.add(atendimento);
             linha = leitura.readLine();
         }
+        
+        lista.forEach(System.out::println);
         
     }
     

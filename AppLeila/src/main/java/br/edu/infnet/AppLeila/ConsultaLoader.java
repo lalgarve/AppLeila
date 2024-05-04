@@ -4,6 +4,8 @@ package br.edu.infnet.AppLeila;
 import br.edu.infnet.AppLeila.model.domain.Consulta;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -17,6 +19,7 @@ public class ConsultaLoader implements ApplicationRunner{
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        List<Consulta> lista = new ArrayList<>();
         FileReader file = new FileReader("consulta.txt");
         BufferedReader leitura = new BufferedReader(file);
         String linha = leitura.readLine();
@@ -31,9 +34,11 @@ public class ConsultaLoader implements ApplicationRunner{
             consulta.setMedico(campos[3]);
             consulta.setEspecialidade(campos[4]);
             
-            System.out.println(consulta);
+            lista.add(consulta);
             linha = leitura.readLine();
         }
+        
+        lista.forEach(System.out::println);
         
     }
     

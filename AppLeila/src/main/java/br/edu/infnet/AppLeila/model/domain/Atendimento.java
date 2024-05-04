@@ -1,6 +1,8 @@
 package br.edu.infnet.AppLeila.model.domain;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 
@@ -9,15 +11,15 @@ import java.util.List;
  * @author leila.algarve
  */
 public class Atendimento {
-    private LocalTime dataHora;
+    private LocalDateTime dataHora;
     private String convenio;
     private List<Servico> servicos;
     
-    public LocalTime getDataHora(){
+    public LocalDateTime getDataHora(){
         return dataHora;
     }
     
-    public void setDataHora(LocalTime dataHora){
+    public void setDataHora(LocalDateTime dataHora){
         this.dataHora = dataHora;
     }
     
@@ -35,7 +37,7 @@ public class Atendimento {
 
     @Override
     public String toString() {
-        return "Atendimento{" + "data=" + dataHora + ", convenio=" + convenio + ", servicos=" + servicos + '}';
+        return "Atendimento{" + "data=" + dataHora + " convenio" + convenio + ", servicos=" + servicos + '}';
     }
     
     

@@ -4,7 +4,7 @@ package br.edu.infnet.AppLeila.model.domain;
  *
  * @author leila.algarve
  */
-public class Servico {
+public abstract class Servico {
     private float preco;
     private boolean particular;
                             
