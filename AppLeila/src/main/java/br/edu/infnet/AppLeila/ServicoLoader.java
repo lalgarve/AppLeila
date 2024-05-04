@@ -1,14 +1,12 @@
 
 package br.edu.infnet.AppLeila;
 
-import br.edu.infnet.AppLeila.model.domain.Atendimento;
 import br.edu.infnet.AppLeila.model.domain.Consulta;
 import br.edu.infnet.AppLeila.model.domain.Exame;
-import br.edu.infnet.AppLeila.model.domain.Servico;
+import br.edu.infnet.AppLeila.model.service.ServicoService;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -19,10 +17,11 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ServicoLoader implements ApplicationRunner{
-
+    @Autowired
+    private ServicoService service;
+    
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        List<Servico> lista = new ArrayList<>();
         FileReader file = new FileReader("servico.txt");
         BufferedReader leitura = new BufferedReader(file);
         String linha = leitura.readLine();
@@ -36,7 +35,7 @@ public class ServicoLoader implements ApplicationRunner{
                     exame.setParticular(Boolean.parseBoolean(campos[2]));
                     exame.setNome(campos[3]);
                     exame.setHorasJejum(Integer.parseInt(campos[4]));
-                    lista.add(exame);
+                    service.incluir(exame);
                 }
                 case "c" -> {
                     Consulta consulta = new Consulta();
@@ -45,14 +44,14 @@ public class ServicoLoader implements ApplicationRunner{
                     consulta.setCRM(campos[3]);
                     consulta.setMedico(campos[4]);
                     consulta.setEspecialidade(campos[5]);
-                    lista.add(consulta);
+                    service.incluir(consulta);
                 }
             }
 
             linha = leitura.readLine();
         }
         
-        lista.forEach(System.out::println);
+        service.obterLista().forEach(System.out::println);
         
     }
     

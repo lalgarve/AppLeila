@@ -1,11 +1,10 @@
 package br.edu.infnet.AppLeila;
 
-import br.edu.infnet.AppLeila.model.domain.Consulta;
 import br.edu.infnet.AppLeila.model.domain.Exame;
+import br.edu.infnet.AppLeila.model.service.ExameService;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -16,14 +15,17 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ExameLoader implements ApplicationRunner{
+    
+    @Autowired
+    private ExameService service;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        List<Exame> lista = new ArrayList<>();
         FileReader file = new FileReader("exame.txt");
         BufferedReader leitura = new BufferedReader(file);
         String linha = leitura.readLine();
         System.out.println("#Exame");
+
         while(linha != null){
             String[] campos = linha.split(";");
             
@@ -33,12 +35,12 @@ public class ExameLoader implements ApplicationRunner{
             exame.setNome(campos[2]);
             exame.setHorasJejum(Integer.parseInt(campos[3]));
             
-            lista.add(exame);
+            service.incluir(exame);
             
             linha = leitura.readLine();
         }
         
-        lista.forEach(System.out::println);
+        service.obterLista().forEach(System.out::println);
         
     }
     
