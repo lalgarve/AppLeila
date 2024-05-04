@@ -21,7 +21,7 @@ public class ExameLoader implements ApplicationRunner{
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        FileReader file = new FileReader("exame.txt");
+        FileReader file = new FileReader("arquivos/exame.txt");
         BufferedReader leitura = new BufferedReader(file);
         String linha = leitura.readLine();
         System.out.println("#Exame");

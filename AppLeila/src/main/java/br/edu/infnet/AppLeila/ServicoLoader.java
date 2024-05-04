@@ -22,7 +22,7 @@ public class ServicoLoader implements ApplicationRunner{
     
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        FileReader file = new FileReader("servico.txt");
+        FileReader file = new FileReader("arquivos/servico.txt");
         BufferedReader leitura = new BufferedReader(file);
         String linha = leitura.readLine();
         System.out.println("#Servico");
