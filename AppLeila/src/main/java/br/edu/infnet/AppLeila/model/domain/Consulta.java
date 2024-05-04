@@ -1,4 +1,4 @@
-package br.edu.infnet.AppLeila.model;
+package br.edu.infnet.AppLeila.model.domain;
 
 /**
  *
@@ -31,6 +31,11 @@ public class Consulta extends Servico{
 
     public void setEspecialidade(String especialidade) {
         this.especialidade = especialidade;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " Consulta{" + "CRM=" + CRM + ", medico=" + medico + ", especialidade=" + especialidade + '}';
     }
     
     

@@ -1,0 +1,3 @@
+50.00;true;glicose;8
+100.00;true;hemograma completo;0
+800.00;false;biópisa de pele;0

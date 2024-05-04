@@ -1,0 +1,6 @@
+e;50.00;true;glicose;8
+e;100.00;true;hemograma completo;0
+e;800.00;false;biópisa de pele;0
+c;100.00;true;11112-3;André Carvalho;Dermatologista
+c;50.0;false;33333-3;Marcela Soares;Endócrino
+c;100.00;true;44444-3;Carlos Alberto;Dermatologista

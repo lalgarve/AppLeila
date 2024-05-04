@@ -1,4 +1,4 @@
-package br.edu.infnet.AppLeila.model;
+package br.edu.infnet.AppLeila.model.domain;
 
 /**
  *
@@ -22,6 +22,11 @@ public class Exame extends Servico{
 
     public void setHorasJejum(int horasJejum) {
         this.horasJejum = horasJejum;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " Exame{" + "nome=" + nome + ", horasJejum=" + horasJejum + '}';
     }
     
     

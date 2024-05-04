@@ -1,4 +1,4 @@
-package br.edu.infnet.AppLeila.model;
+package br.edu.infnet.AppLeila.model.domain;
 
 /**
  *
@@ -23,4 +23,10 @@ public class Servico {
     public void setPreco(float preco){
         this.preco = preco;
     }
+
+    @Override
+    public String toString() {
+        return "Servico{" + "preco=" + preco + ", particular=" + particular + '}';
+    }
+    
 }
