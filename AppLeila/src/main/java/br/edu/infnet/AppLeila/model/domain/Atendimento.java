@@ -1,6 +1,7 @@
 package br.edu.infnet.AppLeila.model.domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,7 +14,10 @@ public class Atendimento {
     private LocalDateTime dataHora;
     private String convenio;
     private List<Servico> servicos;
-    
+
+    public Atendimento(){
+        this.servicos = new ArrayList<>();
+    }
     public LocalDateTime getDataHora(){
         return dataHora;
     }
@@ -29,9 +33,9 @@ public class Atendimento {
     public void setConvenio(String convenio){
         this.convenio = convenio;
     }
-    
+
     public List<Servico> getServicos(){
-        return Collections.unmodifiableList(servicos);
+        return servicos;
     }
 
     public Integer getId() {
@@ -44,7 +48,8 @@ public class Atendimento {
 
     @Override
     public String toString() {
-        return "Atendimento{" + "id=" + id + ", dataHora=" + dataHora + ", convenio=" + convenio + ", servicos=" + servicos + '}';
+        return "Atendimento{" + "id=" + id + ", dataHora=" + dataHora + ", convenio=" + convenio
+                + ", servicos=" + servicos.size()+ '}';
     }
 
 
