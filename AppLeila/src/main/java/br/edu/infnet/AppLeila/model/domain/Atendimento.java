@@ -1,18 +1,24 @@
 package br.edu.infnet.AppLeila.model.domain;
 
+import jakarta.persistence.*;
+
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
  *
  * @author leila.algarve
  */
+
+@Entity
 public class Atendimento {
+    @Id
     private Integer id;
     private LocalDateTime dataHora;
     private String convenio;
+    @OneToMany
     private List<Servico> servicos;
 
     public Atendimento(){
