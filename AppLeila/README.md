@@ -3,6 +3,7 @@
 **AINDA NÃO ESTÁ PRONTO**
 
 1. Banco de dados criado automaticamente no start da aplicação.
+   _OK_
 
 1. Configurações de criação e de acesso aos dados em arquivo de propriedade.
 
@@ -13,6 +14,7 @@ _OK_
 _OK_
 
 3. Os atributos e os relacionamentos das classes de negócio devem ser mapeados.
+_OK_ (falta 1 classe)
 
 4. O projeto precisa estar organizado em quatro camadas:
 

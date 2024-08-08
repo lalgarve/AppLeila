@@ -4,7 +4,11 @@ package br.edu.infnet.AppLeila.model.service;
 import br.edu.infnet.AppLeila.model.domain.Atendimento;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import br.edu.infnet.AppLeila.model.repository.AtendimentoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,15 +17,14 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class AtendimentoService {
-    private static int id;
-    private static Map<Integer, Atendimento> mapa = new HashMap<>();
+    @Autowired
+    private AtendimentoRepository repository;
     
-    public void incluir(Atendimento atendimento){
-        atendimento.setId(++id);
-        mapa.put(id, atendimento);
+    public Atendimento incluir(Atendimento atendimento){
+        return repository.save(atendimento);
     }
     
-    public Collection<Atendimento> obterLista(){
-        return mapa.values();
+    public List<Atendimento> obterLista(){
+        return repository.findAll();
     }
 }

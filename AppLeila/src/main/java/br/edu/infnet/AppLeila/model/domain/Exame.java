@@ -1,9 +1,12 @@
 package br.edu.infnet.AppLeila.model.domain;
 
+import jakarta.persistence.Entity;
+
 /**
  *
  * @author leila.algarve
  */
+@Entity
 public class Exame extends Servico{
     private String nome;
     private int horasJejum;

@@ -7,7 +7,11 @@ package br.edu.infnet.AppLeila.model.service;
 import br.edu.infnet.AppLeila.model.domain.Servico;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import br.edu.infnet.AppLeila.model.repository.ServicoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,15 +20,14 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ServicoService {
-    private static int id;
-    private static Map<Integer, Servico> mapa = new HashMap<>();
+    @Autowired
+    private ServicoRepository servicoRepository;
     
-    public void incluir(Servico servico){
-        servico.setId(++id);
-        mapa.put(id, servico);
+    public Servico incluir(Servico servico){
+        return servicoRepository.save(servico);
     }
     
-    public Collection<Servico> obterLista(){
-        return mapa.values();
+    public List<Servico> obterLista(){
+        return servicoRepository.findAll();
     }
 }

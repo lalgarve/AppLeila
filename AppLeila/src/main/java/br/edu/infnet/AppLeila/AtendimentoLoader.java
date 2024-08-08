@@ -47,9 +47,8 @@ public class AtendimentoLoader implements ApplicationRunner{
                     atendimento.setDataHora(dataHora);
                     boolean temConvenio = campos.length > 2 && !campos[2].isBlank();
                     atendimento.setConvenio(temConvenio ? campos[2] : null);
-                    atendimentoService.incluir(atendimento);
+                    atendimento = atendimentoService.incluir(atendimento);
                     linha = leitura.readLine();
-                    atendimentoService.incluir(atendimento);
                 }
                 case "e" -> {
                     Exame exame = new Exame();
@@ -57,8 +56,8 @@ public class AtendimentoLoader implements ApplicationRunner{
                     exame.setParticular(Boolean.parseBoolean(campos[2]));
                     exame.setNome(campos[3]);
                     exame.setHorasJejum(Integer.parseInt(campos[4]));
+                    exame.setAtendimento(atendimento);
                     servicoService.incluir(exame);
-                    atendimento.getServicos().add(exame);
                 }
                 case "c" -> {
                     Consulta consulta = new Consulta();
@@ -67,13 +66,12 @@ public class AtendimentoLoader implements ApplicationRunner{
                     consulta.setCRM(campos[3]);
                     consulta.setMedico(campos[4]);
                     consulta.setEspecialidade(campos[5]);
+                    consulta.setAtendimento(atendimento);
                     servicoService.incluir(consulta);
-                    atendimento.getServicos().add(consulta);
                 }
             }
             linha = leitura.readLine();
         }
-
         atendimentoService.obterLista().forEach(System.out::println);
 
 

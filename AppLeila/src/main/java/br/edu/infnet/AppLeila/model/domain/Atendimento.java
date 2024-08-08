@@ -15,10 +15,11 @@ import java.util.List;
 @Entity
 public class Atendimento {
     @Id
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private LocalDateTime dataHora;
     private String convenio;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "atendimento")
     private List<Servico> servicos;
 
     public Atendimento(){
@@ -44,11 +45,15 @@ public class Atendimento {
         return servicos;
     }
 
-    public Integer getId() {
+    public void setServicos(List<Servico> servicos){
+        this.servicos = servicos;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

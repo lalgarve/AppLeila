@@ -2,10 +2,11 @@
 package br.edu.infnet.AppLeila.model.service;
 
 import br.edu.infnet.AppLeila.model.domain.Consulta;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import br.edu.infnet.AppLeila.model.repository.ConsultaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  *
@@ -13,15 +14,14 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ConsultaService {
-    private static int id;
-    private static Map<Integer, Consulta> mapa = new HashMap<>();
+    @Autowired
+    private ConsultaRepository consultaRepository;
     
-    public void incluir(Consulta consulta){
-        consulta.setId(++id);
-        mapa.put(id, consulta);
+    public Consulta incluir(Consulta consulta){
+        return consultaRepository.save(consulta);
     }
     
-    public Collection<Consulta> obterLista(){
-        return mapa.values();
+    public List<Consulta> obterLista(){
+        return consultaRepository.findAll();
     }
 }

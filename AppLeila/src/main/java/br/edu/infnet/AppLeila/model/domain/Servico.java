@@ -1,13 +1,23 @@
 package br.edu.infnet.AppLeila.model.domain;
 
+import jakarta.persistence.*;
+
 /**
  *
  * @author leila.algarve
  */
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Servico {
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private float preco;
     private boolean particular;
+
+    @ManyToOne
+    @JoinColumn(name="atendimento_id", nullable = false)
+    private Atendimento atendimento;
                             
     public boolean isParticular(){
         return particular;
@@ -25,12 +35,20 @@ public abstract class Servico {
         this.preco = preco;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public Atendimento getAtendimento() {
+        return atendimento;
+    }
+
+    public void setAtendimento(Atendimento atendimento) {
+        this.atendimento = atendimento;
     }
 
     @Override
